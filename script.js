@@ -7,22 +7,70 @@ function scrollToApp() {
 // =====================================================
 const playlistData = {
   focus: [
-    { title: "Tycho — Awake", cover: "https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=300&q=80" },
-    { title: "Lo-fi Beats", cover: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=300&q=80" },
-    { title: "Hans Zimmer — Time", cover: "https://images.unsplash.com/photo-1507838153414-b4b713384a76?w=300&q=80" },
-    { title: "Bonus: Brian Eno — An Ending", cover: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=300&q=80" },
+    {
+      title: "Tycho — Awake",
+      cover:
+        "https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=300&q=80",
+    },
+    {
+      title: "Lo-fi Beats",
+      cover:
+        "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=300&q=80",
+    },
+    {
+      title: "Hans Zimmer — Time",
+      cover:
+        "https://images.unsplash.com/photo-1507838153414-b4b713384a76?w=300&q=80",
+    },
+    {
+      title: "Bonus: Brian Eno — An Ending",
+      cover:
+        "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=300&q=80",
+    },
   ],
   chill: [
-    { title: "Frank Ocean — Pink + White", cover: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=300&q=80" },
-    { title: "SZA — Good Days", cover: "https://images.unsplash.com/photo-1494232410401-ad00d5433cfa?w=300&q=80" },
-    { title: "Daniel Caesar — Best Part", cover: "https://images.unsplash.com/photo-1516280440614-37939bbacd81?w=300&q=80" },
-    { title: "Bonus: Beach House — Space Song", cover: "https://images.unsplash.com/photo-1483412033650-1015ddeb83d1?w=300&q=80" },
+    {
+      title: "Frank Ocean — Pink + White",
+      cover:
+        "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=300&q=80",
+    },
+    {
+      title: "SZA — Good Days",
+      cover:
+        "https://images.unsplash.com/photo-1494232410401-ad00d5433cfa?w=300&q=80",
+    },
+    {
+      title: "Daniel Caesar — Best Part",
+      cover:
+        "https://images.unsplash.com/photo-1516280440614-37939bbacd81?w=300&q=80",
+    },
+    {
+      title: "Bonus: Beach House — Space Song",
+      cover:
+        "https://images.unsplash.com/photo-1483412033650-1015ddeb83d1?w=300&q=80",
+    },
   ],
   hype: [
-    { title: "Drake — Nonstop", cover: "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=300&q=80" },
-    { title: "Travis Scott — SICKO MODE", cover: "https://images.unsplash.com/photo-1506157786151-b8491531f063?w=300&q=80" },
-    { title: "Kanye West — POWER", cover: "https://images.unsplash.com/photo-1464375117522-1311dd6d0cd1?w=300&q=80" },
-    { title: "Bonus: Run The Jewels — Legend Has It", cover: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=300&q=80" },
+    {
+      title: "Drake — Nonstop",
+      cover:
+        "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=300&q=80",
+    },
+    {
+      title: "Travis Scott — SICKO MODE",
+      cover:
+        "https://images.unsplash.com/photo-1506157786151-b8491531f063?w=300&q=80",
+    },
+    {
+      title: "Kanye West — POWER",
+      cover:
+        "https://images.unsplash.com/photo-1464375117522-1311dd6d0cd1?w=300&q=80",
+    },
+    {
+      title: "Bonus: Run The Jewels — Legend Has It",
+      cover:
+        "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=300&q=80",
+    },
   ],
 };
 
@@ -46,7 +94,6 @@ selector.addEventListener("change", buildPlaylist);
 modeSelector.addEventListener("change", buildPlaylist);
 
 function buildPlaylist() {
-
   /* =====================================================
      STEP 3: Getting the Selected Mood
      console.log(selector.value) to show the mood
@@ -118,8 +165,12 @@ function buildPlaylist() {
      3. Write an if / else if that assigns `songs` based on
         the mode
      ===================================================== */
-
-
+  const songs = [];
+  if (modeSelector.value == "quickPlay") {
+    songs = allSongs.slice(0, 3);
+  } else if (modeSelector.value == "fullSession") {
+    songs = allSongs.slive(0, 4);
+  }
 
   /* =====================================================
      DEV TEAMS — STEP 6: Conditional Feedback
@@ -164,8 +215,16 @@ function buildPlaylist() {
 
      YOUR CODE GOES HERE:
      ===================================================== */
-
-
+  container.innerHTML = "";
+  songsRemovedCount = 0;
+  milestone.textContent = "";
+  if (songs.length == 0) {
+    feedback.textContent = "No songs found.";
+    feedback.className = "feedback-box error";
+  } else {
+    feedback.textContent = "idk for now";
+    feedback.className = "feedback-box success";
+  }
 
   /* =====================================================
      DEV TEAMS — STEP 7: The Loop (⭐⭐⭐ MOST IMPORTANT!)
@@ -182,9 +241,9 @@ function buildPlaylist() {
      YOUR CODE GOES HERE:
      ===================================================== */
 
+  const currSong;
 
-
-    /* =====================================================
+  /* =====================================================
        DEV TEAMS — STEP 8: Create and Display DOM Elements
 
        WHAT THIS STEP NEEDS TO DO (for each song):
@@ -208,9 +267,7 @@ function buildPlaylist() {
        YOUR CODE GOES HERE:
        ===================================================== */
 
-
-
-    /* =====================================================
+  /* =====================================================
        DEV TEAMS — STEP 9: DOM Element Removal on Click
        🟦 DIRECT PRACTICE for your game's "DOM Element
        change/add/remove" requirement. This is the EXACT
@@ -237,10 +294,7 @@ function buildPlaylist() {
        YOUR CODE GOES HERE:
        ===================================================== */
 
-
-
   // (Make sure your Step 7 loop closes here.)
-
 
   /* =====================================================
      DEV TEAMS — STEP 10: Milestone Tracking (Bonus pattern)
@@ -265,6 +319,10 @@ function buildPlaylist() {
 
      YOUR CODE GOES HERE:
      ===================================================== */
+}
 
-
+function displaySong() {
+  let div = document.createElement("div");
+  div.className = "song-row";
+  div.setAttribute("src", song.cover);
 }
